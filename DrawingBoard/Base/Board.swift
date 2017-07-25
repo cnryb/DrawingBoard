@@ -27,14 +27,14 @@ class Board: UIImageView {
     
     override init(frame: CGRect) {
         self.strokeColor = UIColor.black
-        self.strokeWidth = 1
+        self.strokeWidth = 10
         
         super.init(frame: frame)
     }
 
     required init?(coder aDecoder: NSCoder) {
         self.strokeColor = UIColor.black
-        self.strokeWidth = 1
+        self.strokeWidth = 10
         
         super.init(coder: aDecoder)
     }
