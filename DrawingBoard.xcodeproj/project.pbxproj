@@ -21,8 +21,6 @@
 		9CD69B4A1A90B25900533279 /* DrawingBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD69B491A90B25900533279 /* DrawingBoardTests.swift */; };
 		9CDFF6E71AB91738007BD247 /* BaseBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6E51AB91738007BD247 /* BaseBrush.swift */; };
 		9CDFF6E81AB91738007BD247 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6E61AB91738007BD247 /* Board.swift */; };
-		9CDFF6EE1AB91894007BD247 /* DashLineBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6EA1AB91894007BD247 /* DashLineBrush.swift */; };
-		9CDFF6EF1AB91894007BD247 /* EllipseBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6EB1AB91894007BD247 /* EllipseBrush.swift */; };
 		9CDFF6F01AB91894007BD247 /* LineBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6EC1AB91894007BD247 /* LineBrush.swift */; };
 		9CDFF6F11AB91894007BD247 /* RectangleBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6ED1AB91894007BD247 /* RectangleBrush.swift */; };
 		9CDFF6F31AB91B53007BD247 /* PencilBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6F21AB91B52007BD247 /* PencilBrush.swift */; };
@@ -57,8 +55,6 @@
 		9CD69B491A90B25900533279 /* DrawingBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoardTests.swift; sourceTree = "<group>"; };
 		9CDFF6E51AB91738007BD247 /* BaseBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseBrush.swift; sourceTree = "<group>"; };
 		9CDFF6E61AB91738007BD247 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		9CDFF6EA1AB91894007BD247 /* DashLineBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashLineBrush.swift; sourceTree = "<group>"; };
-		9CDFF6EB1AB91894007BD247 /* EllipseBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllipseBrush.swift; sourceTree = "<group>"; };
 		9CDFF6EC1AB91894007BD247 /* LineBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineBrush.swift; sourceTree = "<group>"; };
 		9CDFF6ED1AB91894007BD247 /* RectangleBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleBrush.swift; sourceTree = "<group>"; };
 		9CDFF6F21AB91B52007BD247 /* PencilBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PencilBrush.swift; sourceTree = "<group>"; };
@@ -175,9 +171,7 @@
 			children = (
 				9CDFF6F21AB91B52007BD247 /* PencilBrush.swift */,
 				9CDFF6EC1AB91894007BD247 /* LineBrush.swift */,
-				9CDFF6EA1AB91894007BD247 /* DashLineBrush.swift */,
 				9CDFF6ED1AB91894007BD247 /* RectangleBrush.swift */,
-				9CDFF6EB1AB91894007BD247 /* EllipseBrush.swift */,
 				9CCF258C1ABA7889009A534F /* EraserBrush.swift */,
 			);
 			path = Brushes;
@@ -234,10 +228,12 @@
 				TargetAttributes = {
 					9CD69B2D1A90B25900533279 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 3XF6FPH7DP;
+						DevelopmentTeam = H2PP9VPMCW;
+						LastSwiftMigration = 0830;
 					};
 					9CD69B421A90B25900533279 = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0830;
 						TestTargetID = 9CD69B2D1A90B25900533279;
 					};
 				};
@@ -291,12 +287,10 @@
 				9CCF258D1ABA7889009A534F /* EraserBrush.swift in Sources */,
 				9C19535A1AC7AE2A008231FE /* PaintingBrushSettingsView.swift in Sources */,
 				9CDFF6F11AB91894007BD247 /* RectangleBrush.swift in Sources */,
-				9CDFF6EE1AB91894007BD247 /* DashLineBrush.swift in Sources */,
 				9CDFF6F31AB91B53007BD247 /* PencilBrush.swift in Sources */,
 				9CDFF6E71AB91738007BD247 /* BaseBrush.swift in Sources */,
 				9CD69B361A90B25900533279 /* ViewController.swift in Sources */,
 				9C19535E1AC7AE4C008231FE /* BackgroundSettingsVC.swift in Sources */,
-				9CDFF6EF1AB91894007BD247 /* EllipseBrush.swift in Sources */,
 				9C1953641AC7C394008231FE /* RGBColorPicker.swift in Sources */,
 				9CD69B341A90B25900533279 /* AppDelegate.swift in Sources */,
 				9CDFF6F01AB91894007BD247 /* LineBrush.swift in Sources */,
@@ -425,11 +419,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = H2PP9VPMCW;
 				INFOPLIST_FILE = DrawingBoard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.servbus.PhotoCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -439,11 +437,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = H2PP9VPMCW;
 				INFOPLIST_FILE = DrawingBoard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.servbus.PhotoCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -462,6 +464,7 @@
 				INFOPLIST_FILE = DrawingBoardTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrawingBoard.app/DrawingBoard";
 			};
 			name = Debug;
@@ -477,6 +480,7 @@
 				INFOPLIST_FILE = DrawingBoardTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrawingBoard.app/DrawingBoard";
 			};
 			name = Release;

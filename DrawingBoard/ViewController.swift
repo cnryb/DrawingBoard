@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var brushes = [PencilBrush(), LineBrush(), DashLineBrush(), RectangleBrush(), EllipseBrush(), EraserBrush()]
+    var brushes = [LineBrush(),  RectangleBrush()]
     
     @IBOutlet var board: Board!
     @IBOutlet var topView: UIView!
@@ -32,8 +32,8 @@ class ViewController: UIViewController {
         self.board.brush = brushes[0]
         
         self.toolbarEditingItems = [
-            UIBarButtonItem(barButtonSystemItem:.FlexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "完成", style:.Plain, target: self, action: "endSetting")
+            UIBarButtonItem(barButtonSystemItem:.flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "完成", style:.plain, target: self, action: #selector(ViewController.endSetting))
         ]
         self.toolbarItems = self.toolbar.items
 
@@ -41,9 +41,9 @@ class ViewController: UIViewController {
         self.setupBackgroundSettingsView()
         
         self.board.drawingStateChangedBlock = {(state: DrawingState) -> () in
-            if state != .Moved {
+            if state != .moved {
                 UIView.beginAnimations(nil, context: nil)
-                if state == .Began {
+                if state == .began {
                     self.topViewConstraintY.constant = -self.topView.frame.size.height
                     self.toolbarConstraintBottom.constant = -self.toolbar.frame.size.height
                     
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
                     
                     self.undoButton.alpha = 0
                     self.redoButton.alpha = 0
-                } else if state == .Ended {
+                } else if state == .ended {
                     UIView.setAnimationDelay(1.0)
                     self.topViewConstraintY.constant = 0
                     self.toolbarConstraintBottom.constant = 0
@@ -74,11 +74,11 @@ class ViewController: UIViewController {
     }
     
     func setupBrushSettingsView() {
-        let brushSettingsView = UINib(nibName: "PaintingBrushSettingsView", bundle: nil).instantiateWithOwner(nil, options: nil).first as! PaintingBrushSettingsView
+        let brushSettingsView = UINib(nibName: "PaintingBrushSettingsView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! PaintingBrushSettingsView
         
         self.addConstraintsToToolbarForSettingsView(brushSettingsView)
         
-        brushSettingsView.hidden = true
+        brushSettingsView.isHidden = true
         brushSettingsView.tag = 1
         brushSettingsView.backgroundColor = self.board.strokeColor
         
@@ -94,11 +94,11 @@ class ViewController: UIViewController {
     }
     
     func setupBackgroundSettingsView() {
-        let backgroundSettingsVC = UINib(nibName: "BackgroundSettingsVC", bundle: nil).instantiateWithOwner(nil, options: nil).first as! BackgroundSettingsVC
+        let backgroundSettingsVC = UINib(nibName: "BackgroundSettingsVC", bundle: nil).instantiate(withOwner: nil, options: nil).first as! BackgroundSettingsVC
         
         self.addConstraintsToToolbarForSettingsView(backgroundSettingsVC.view)
         
-        backgroundSettingsVC.view.hidden = true
+        backgroundSettingsVC.view.isHidden = true
         backgroundSettingsVC.view.tag = 2
         backgroundSettingsVC.setBackgroundColor(self.board.backgroundColor!)
         
@@ -115,32 +115,32 @@ class ViewController: UIViewController {
         }
     }
     
-    func addConstraintsToToolbarForSettingsView(view: UIView) {
+    func addConstraintsToToolbarForSettingsView(_ view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         self.toolbar.addSubview(view)
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[settingsView]-0-|",
-            options: .DirectionLeadingToTrailing,
+        self.toolbar.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[settingsView]-0-|",
+            options: NSLayoutFormatOptions(),
             metrics: nil,
             views: ["settingsView" : view]))
-        self.toolbar.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[settingsView(==height)]",
-            options: .DirectionLeadingToTrailing,
-            metrics: ["height" : view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height],
+        self.toolbar.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[settingsView(==height)]",
+            options: NSLayoutFormatOptions(),
+            metrics: ["height" : view.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height],
             views: ["settingsView" : view]))
     }
     
     func updateToolbarForSettingsView() {
-        self.toolbarConstraintHeight.constant = self.currentSettingsView!.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 44
+        self.toolbarConstraintHeight.constant = self.currentSettingsView!.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height + 44
         
         self.toolbar.setItems(self.toolbarEditingItems, animated: true)
         UIView.beginAnimations(nil, context: nil)
         self.toolbar.layoutIfNeeded()
         UIView.commitAnimations()
         
-        self.toolbar.bringSubviewToFront(self.currentSettingsView!)
+        self.toolbar.bringSubview(toFront: self.currentSettingsView!)
     }
     
-    func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafePointer<Void>) {
+    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
         if let err = error {
             UIAlertView(title: "错误", message: err.localizedDescription, delegate: nil, cancelButtonTitle: "确定").show()
         } else {
@@ -149,36 +149,36 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func switchBrush(sender: UISegmentedControl) {
+    @IBAction func switchBrush(_ sender: UISegmentedControl) {
         assert(sender.tag < self.brushes.count, "!!!")
         
         self.board.brush = self.brushes[sender.selectedSegmentIndex]
     }
     
-    @IBAction func undo(sender: UIButton) {
+    @IBAction func undo(_ sender: UIButton) {
         self.board.undo()
     }
     
-    @IBAction func redo(sneder: UIButton) {
+    @IBAction func redo(_ sneder: UIButton) {
         self.board.redo()
     }
     
     @IBAction func paintingBrushSettings() {
         self.currentSettingsView = self.toolbar.viewWithTag(1)
-        self.currentSettingsView?.hidden = false
+        self.currentSettingsView?.isHidden = false
      
         self.updateToolbarForSettingsView()
     }
 
     @IBAction func backgroundSettings() {
         self.currentSettingsView = self.toolbar.viewWithTag(2)
-        self.currentSettingsView?.hidden = false
+        self.currentSettingsView?.isHidden = false
         
         self.updateToolbarForSettingsView()
     }
     
     @IBAction func saveToAlbum() {
-        UIImageWriteToSavedPhotosAlbum(self.board.takeImage(), self, "image:didFinishSavingWithError:contextInfo:", nil)
+        UIImageWriteToSavedPhotosAlbum(self.board.takeImage(), self, #selector(ViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
     @IBAction func endSetting() {
@@ -190,7 +190,7 @@ class ViewController: UIViewController {
         self.toolbar.layoutIfNeeded()
         UIView.commitAnimations()
         
-        self.currentSettingsView?.hidden = true
+        self.currentSettingsView?.isHidden = true
     }
 }
 

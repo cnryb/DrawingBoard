@@ -12,7 +12,7 @@ protocol PaintBrush {
     
     func supportedContinuousDrawing() -> Bool
     
-    func drawInContext(context: CGContextRef)
+    func drawInContext(_ context: CGContext)
 }
 
 class BaseBrush : NSObject, PaintBrush {
@@ -26,7 +26,7 @@ class BaseBrush : NSObject, PaintBrush {
         return false
     }
     
-    func drawInContext(context: CGContextRef) {
+    func drawInContext(_ context: CGContext) {
         assert(false, "must implements in subclass.")
     }
 }

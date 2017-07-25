@@ -10,8 +10,8 @@ import UIKit
 
 class LineBrush: BaseBrush {
     
-    override func drawInContext(context: CGContextRef) {
-        CGContextMoveToPoint(context, beginPoint.x, beginPoint.y)
-        CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
+    override func drawInContext(_ context: CGContext) {
+        context.move(to: CGPoint(x: beginPoint.x, y: beginPoint.y))
+        context.addLine(to: CGPoint(x: endPoint.x, y: endPoint.y))
     }
 }

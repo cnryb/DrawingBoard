@@ -10,13 +10,13 @@ import UIKit
 
 class PencilBrush: BaseBrush {
     
-    override func drawInContext(context: CGContextRef) {
+    override func drawInContext(_ context: CGContext) {
         if let lastPoint = self.lastPoint {
-            CGContextMoveToPoint(context, lastPoint.x, lastPoint.y)
-            CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
+            context.move(to: CGPoint(x: lastPoint.x, y: lastPoint.y))
+            context.addLine(to: CGPoint(x: endPoint.x, y: endPoint.y))
         } else {
-            CGContextMoveToPoint(context, beginPoint.x, beginPoint.y)
-            CGContextAddLineToPoint(context, endPoint.x, endPoint.y)
+            context.move(to: CGPoint(x: beginPoint.x, y: beginPoint.y))
+            context.addLine(to: CGPoint(x: endPoint.x, y: endPoint.y))
         }
     }
     
