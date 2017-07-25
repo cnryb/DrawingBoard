@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import UIKit
 
 protocol PaintBrush {
     
@@ -21,6 +22,7 @@ class BaseBrush : NSObject, PaintBrush {
     var lastPoint: CGPoint?
     
     var strokeWidth: CGFloat!
+    var color: UIColor = UIColor.black
     
     func supportedContinuousDrawing() -> Bool {
         return false

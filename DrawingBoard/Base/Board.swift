@@ -16,8 +16,6 @@ class Board: UIImageView {
     
     var brush: BaseBrush?
     
-    var strokeWidth: CGFloat
-    var strokeColor: UIColor
     
     var drawingStateChangedBlock: ((_ state: DrawingState) -> ())?
     
@@ -26,16 +24,10 @@ class Board: UIImageView {
     fileprivate var drawingState: DrawingState!
     
     override init(frame: CGRect) {
-        self.strokeColor = UIColor.black
-        self.strokeWidth = 10
-        
         super.init(frame: frame)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self.strokeColor = UIColor.black
-        self.strokeWidth = 10
-        
         super.init(coder: aDecoder)
     }
     
@@ -113,14 +105,13 @@ class Board: UIImageView {
             UIRectFill(self.bounds)
             
             context?.setLineCap(CGLineCap.round)
-            context?.setLineWidth(self.strokeWidth)
-            context?.setStrokeColor(self.strokeColor.cgColor)
-            
+            context?.setLineWidth((self.brush?.strokeWidth)!)
+            context?.setStrokeColor((self.brush?.color.cgColor)!)
+        
             if let realImage = self.realImage {
                 realImage.draw(in: self.bounds)
             }
             
-            brush.strokeWidth = self.strokeWidth
             brush.drawInContext(context!)
             context?.strokePath()
             

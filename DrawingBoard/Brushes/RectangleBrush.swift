@@ -9,9 +9,13 @@
 import UIKit
 
 class RectangleBrush: BaseBrush {
-   
+    
     override func drawInContext(_ context: CGContext) {
-        context.addRect(CGRect(origin: CGPoint(x: min(beginPoint.x, endPoint.x), y: min(beginPoint.y, endPoint.y)),
-            size: CGSize(width: abs(endPoint.x - beginPoint.x), height: abs(endPoint.y - beginPoint.y))))
+        let point = CGPoint(x: min(beginPoint.x, endPoint.x), y: min(beginPoint.y, endPoint.y));
+        let size = CGSize(width: abs(endPoint.x - beginPoint.x), height: abs(endPoint.y - beginPoint.y));
+        let rect = CGRect(origin: point, size: size);
+        context.addRect(rect)
+        context.setFillColor(self.color.cgColor)
+        context.fill(rect)
     }
 }

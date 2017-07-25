@@ -21,8 +21,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.board.brush = brushes[0]
-        self.board.strokeWidth=15;
+        self.board.brush = brushes[1]
+        self.board.brush?.strokeWidth = 15;
     }
     
     override func didReceiveMemoryWarning() {
