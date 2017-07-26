@@ -13,10 +13,7 @@
 		9CD69B3B1A90B25900533279 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CD69B3A1A90B25900533279 /* Images.xcassets */; };
 		9CD69B3E1A90B25900533279 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD69B3C1A90B25900533279 /* LaunchScreen.xib */; };
 		9CD69B4A1A90B25900533279 /* DrawingBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD69B491A90B25900533279 /* DrawingBoardTests.swift */; };
-		9CDFF6E71AB91738007BD247 /* BaseBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6E51AB91738007BD247 /* BaseBrush.swift */; };
 		9CDFF6E81AB91738007BD247 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6E61AB91738007BD247 /* Board.swift */; };
-		9CDFF6F01AB91894007BD247 /* LineBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6EC1AB91894007BD247 /* LineBrush.swift */; };
-		9CDFF6F11AB91894007BD247 /* RectangleBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFF6ED1AB91894007BD247 /* RectangleBrush.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,10 +37,7 @@
 		9CD69B431A90B25900533279 /* DrawingBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawingBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD69B481A90B25900533279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CD69B491A90B25900533279 /* DrawingBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoardTests.swift; sourceTree = "<group>"; };
-		9CDFF6E51AB91738007BD247 /* BaseBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseBrush.swift; sourceTree = "<group>"; };
 		9CDFF6E61AB91738007BD247 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		9CDFF6EC1AB91894007BD247 /* LineBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineBrush.swift; sourceTree = "<group>"; };
-		9CDFF6ED1AB91894007BD247 /* RectangleBrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleBrush.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				9CDFF6E41AB91738007BD247 /* Base */,
-				9CDFF6E91AB91894007BD247 /* Brushes */,
 				9CD69B331A90B25900533279 /* AppDelegate.swift */,
 				9CD69B351A90B25900533279 /* ViewController.swift */,
 				9CD69B371A90B25900533279 /* Main.storyboard */,
@@ -125,19 +118,9 @@
 		9CDFF6E41AB91738007BD247 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				9CDFF6E51AB91738007BD247 /* BaseBrush.swift */,
 				9CDFF6E61AB91738007BD247 /* Board.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		9CDFF6E91AB91894007BD247 /* Brushes */ = {
-			isa = PBXGroup;
-			children = (
-				9CDFF6EC1AB91894007BD247 /* LineBrush.swift */,
-				9CDFF6ED1AB91894007BD247 /* RectangleBrush.swift */,
-			);
-			path = Brushes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,11 +228,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CDFF6F11AB91894007BD247 /* RectangleBrush.swift in Sources */,
-				9CDFF6E71AB91738007BD247 /* BaseBrush.swift in Sources */,
 				9CD69B361A90B25900533279 /* ViewController.swift in Sources */,
 				9CD69B341A90B25900533279 /* AppDelegate.swift in Sources */,
-				9CDFF6F01AB91894007BD247 /* LineBrush.swift in Sources */,
 				9CDFF6E81AB91738007BD247 /* Board.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

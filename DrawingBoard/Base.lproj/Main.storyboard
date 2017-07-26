@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,39 +25,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-gv-tpy">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="KNJ-Af-vO1">
-                                        <rect key="frame" x="20" y="8" width="335" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="c3l-Mc-g7V"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="直线"/>
-                                            <segment title="矩形"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="switchBrush:" destination="vXZ-lx-hvc" eventType="valueChanged" id="hsM-Ct-1BA"/>
-                                        </connections>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="KNJ-Af-vO1" secondAttribute="centerY" id="1FW-lr-eZ8"/>
-                                    <constraint firstItem="KNJ-Af-vO1" firstAttribute="leading" secondItem="x5V-gv-tpy" secondAttribute="leading" constant="20" id="DF1-Ad-RFR"/>
-                                    <constraint firstAttribute="height" constant="44" id="lpD-Ra-iSu"/>
-                                    <constraint firstAttribute="trailing" secondItem="KNJ-Af-vO1" secondAttribute="trailing" constant="20" id="pDu-Au-zth"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="x5V-gv-tpy" secondAttribute="trailing" id="3Yt-ho-0Nt"/>
-                            <constraint firstItem="x5V-gv-tpy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Gu0-1Y-yg9"/>
                             <constraint firstAttribute="trailing" secondItem="2gF-xK-2QE" secondAttribute="trailing" id="IY1-j3-wjQ"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2gF-xK-2QE" secondAttribute="bottom" id="K9J-se-3ek"/>
-                            <constraint firstItem="x5V-gv-tpy" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="TJq-jU-D72"/>
                             <constraint firstItem="2gF-xK-2QE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="egy-qf-per"/>
                             <constraint firstItem="2gF-xK-2QE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="wyJ-fh-Jaz"/>
                         </constraints>
@@ -66,8 +37,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="board" destination="2gF-xK-2QE" id="Bcw-GJ-2nV"/>
-                        <outlet property="topView" destination="x5V-gv-tpy" id="DIv-fx-YgW"/>
-                        <outlet property="topViewConstraintY" destination="TJq-jU-D72" id="jJN-JW-nOV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

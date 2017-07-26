@@ -14,7 +14,11 @@ enum DrawingState {
 
 class Board: UIImageView {
     
-    var brush: BaseBrush?
+    var beginPoint: CGPoint!
+    var endPoint: CGPoint!
+    var lastPoint: CGPoint?
+    
+    var color: UIColor = UIColor.black
     
     
     var drawingStateChangedBlock: ((_ state: DrawingState) -> ())?
@@ -26,110 +30,83 @@ class Board: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     // MARK: - Public methods
     
-    func takeImage() -> UIImage {
-        UIGraphicsBeginImageContext(self.bounds.size)
-        
-        self.backgroundColor?.setFill()
-        UIRectFill(self.bounds)
-        
-        self.image?.draw(in: self.bounds)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image!
-    }
-    
     // MARK: - touches methods
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let brush = self.brush {
-            brush.lastPoint = nil
-            
-            brush.beginPoint = touches.first!.location(in: self)
-            brush.endPoint = brush.beginPoint
-			
-            self.drawingState = .began
-            
-            self.drawingImage()
-        }
+        lastPoint = nil
+        beginPoint = touches.first!.location(in: self)
+        endPoint = beginPoint
+        self.drawingState = .began
+        self.drawingImage()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let brush = self.brush {
-            brush.endPoint = touches.first!.location(in: self)
-            
-            self.drawingState = .moved
-            
-            self.drawingImage()
-        }
+        endPoint = touches.first!.location(in: self)
+        self.drawingState = .moved
+        self.drawingImage()
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let brush = self.brush {
-            brush.endPoint = nil
-        }
+        endPoint = nil
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let brush = self.brush {
-            brush.endPoint = touches.first!.location(in: self)
-            
-            self.drawingState = .ended
-            
-            self.drawingImage()
-        }
+        endPoint = touches.first!.location(in: self)
+        self.drawingState = .ended
+        self.drawingImage()
     }
     
     // MARK: - drawing
     
     fileprivate func drawingImage() {
-        if let brush = self.brush {
-            // hook
-            if let drawingStateChangedBlock = self.drawingStateChangedBlock {
-                drawingStateChangedBlock(self.drawingState)
-            }
-
-            UIGraphicsBeginImageContext(self.bounds.size)
-            
-            let context = UIGraphicsGetCurrentContext()
-            
-            UIColor.clear.setFill()
-            UIRectFill(self.bounds)
-            
-            context?.setLineCap(CGLineCap.round)
-            context?.setLineWidth((self.brush?.strokeWidth)!)
-            context?.setStrokeColor((self.brush?.color.cgColor)!)
         
-            if let realImage = self.realImage {
-                realImage.draw(in: self.bounds)
-            }
-            
-            brush.drawInContext(context!)
-            context?.strokePath()
-            
-            let previewImage = UIGraphicsGetImageFromCurrentImageContext()
-            if self.drawingState == .ended || brush.supportedContinuousDrawing() {
-                self.realImage = previewImage
-            }
-            
-            UIGraphicsEndImageContext()
-            
-            // 用 Ended 事件代替原先的 Began 事件
-            if self.drawingState == .ended {
-               // self.boardUndoManager.addImage(self.image!)
-            }
-            
-            self.image = previewImage
-            
-            brush.lastPoint = brush.endPoint
+        // hook
+        if let drawingStateChangedBlock = self.drawingStateChangedBlock {
+            drawingStateChangedBlock(self.drawingState)
         }
+        
+        UIGraphicsBeginImageContext(self.bounds.size)
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        UIColor.clear.setFill()
+        UIRectFill(self.bounds)
+        
+        context?.setStrokeColor(self.color.cgColor)
+        
+        if let realImage = self.realImage {
+            realImage.draw(in: self.bounds)
+        }
+        
+        let point = CGPoint(x: min(beginPoint.x, endPoint.x), y: min(beginPoint.y, endPoint.y));
+        let size = CGSize(width: abs(endPoint.x - beginPoint.x), height: abs(endPoint.y - beginPoint.y));
+        let rect = CGRect(origin: point, size: size);
+        context?.addRect(rect)
+        context?.setFillColor(self.color.cgColor)
+        context?.fill(rect)
+        
+        let previewImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        if self.drawingState == .ended  {
+            self.realImage = previewImage
+        }
+        UIGraphicsEndImageContext()
+        
+        // 用 Ended 事件代替原先的 Began 事件
+        if self.drawingState == .ended {
+            // self.boardUndoManager.addImage(self.image!)
+        }
+        
+        self.image = previewImage
+        
+        lastPoint = endPoint
+        
     }
 }
